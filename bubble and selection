@@ -1,0 +1,152 @@
+#include<stdio.h>
+void bubble_sort(int A[],int n);
+
+[24bcs078@mepcolinux bubble]$cat bubimp.c
+#include"bubhead.h"
+void bubble_sort(int A[],int n){
+   int i,j,k,t;
+   for(i=0;i<=n-2;i++){
+      for(j=0;j<=n-2-i;j++){
+         if (A[j]>A[j+1]){
+            t=A[j];
+            A[j]=A[j+1];
+            A[j+1]=t;
+            printf("Pass no:%d\n",i+1);
+            for(k=0;k<n;k++){
+               printf("%d ",A[k]);
+            }
+            printf("\n");
+         }
+      }
+   }
+      printf("After sorting:");
+      for(i=0;i<n;i++){
+         printf("%d ",A[i]);
+      }
+      printf("\n");
+}
+[24bcs078@mepcolinux bubble]$cat bibapp.c
+cat: bibapp.c: No such file or directory
+[24bcs078@mepcolinux bubble]$cat bubapp.c
+#include"bubhead.h"
+int main(){
+   int n,i;
+   printf("Enter the size of the array:");
+   scanf("%d",&n);
+   int arr[n];
+   printf("Enter the elements of array:");
+   for(i=0;i<n;i++){
+      scanf("%d",&arr[i]);
+   }
+   printf("Before sorting:");
+   for(i=0;i<n;i++){
+      printf("%d ",arr[i]);
+   }
+   printf("\n");
+   bubble_sort(arr,n);
+   return 0;
+}
+
+
+[24bcs078@mepcolinux bubble]$cat makefile
+bub: bubimp.o bubapp.o
+        cc bubimp.o bubapp.o -o bub
+bubimp.o: bubhead.h bubimp.c
+        cc -c bubimp.c
+bubapp.o: bubhead.h bubapp.c
+        cc -c bubapp.c
+
+[24bcs078@mepcolinux bubble]$./bub
+Enter the size of the array:5
+Enter the elements of array:17 45 12 50 9
+Before sorting:17 45 12 50 9
+Pass no:1
+17 12 45 50 9
+Pass no:1
+17 12 45 9 50
+Pass no:2
+12 17 45 9 50
+Pass no:2
+12 17 9 45 50
+Pass no:3
+12 9 17 45 50
+Pass no:4
+9 12 17 45 50
+After sorting:9 12 17 45 50
+
+
+[24bcs078@mepcolinux ex1]$cat selhead.h
+#include<stdio.h>
+void selection_sort(int A[],int n);
+[24bcs078@mepcolinux ex1]$cat selimp.c
+#include"selhead.h"
+void selection_sort(int A[],int n)
+{
+   int i,j,k,min,temp;
+   for (i=0;i<=n-2;i++)
+   {
+      min=i;
+      for(j=i+1;j<=n-1;j++)
+      {
+         if(A[min]>A[j])
+            min=j;
+      }
+      temp=A[i];
+      A[i]=A[min];
+      A[min]=temp;
+      printf("Pass no:%d\n",i+1);
+      for (k=0;k<n;k++){
+         printf("%d ",A[k]);
+      }
+      printf("\n");
+   }
+   printf("After sorting:");
+   for(i=0;i<n;i++)
+   {
+      printf("%d ", A[i]);
+   }
+   printf("\n");
+}
+
+
+[24bcs078@mepcolinux ex1]$cat selapp.c
+#include"selhead.h"
+int main(){
+   int n,i;
+   printf("Enter the size of the array:");
+   scanf("%d",&n);
+   int arr[n];
+   printf("Enter the elements of array:");
+   for(i=0;i<n;i++){
+      scanf("%d",&arr[i]);
+   }
+   printf("Before sorting:");
+   for(i=0;i<n;i++){
+      printf("%d ",arr[i]);
+   }
+   printf("\n");
+   selection_sort(arr,n);
+   return 0;
+}
+
+[24bcs078@mepcolinux ex1]$cat makefile
+sel: selimp.o selapp.o
+        cc selimp.o selapp.o -o sel
+selimp.o: selhead.h selimp.c
+        cc -c selimp.c
+selapp.o: selhead.h selapp.c
+        cc -c selapp.c
+
+[24bcs078@mepcolinux ex1]$./sel
+Enter the size of the array:5
+Enter the elements of array:7 3 2 5 4
+Before sorting:7 3 2 5 4
+Pass no:1
+2 3 7 5 4
+Pass no:2
+2 3 7 5 4
+Pass no:3
+2 3 4 5 7
+Pass no:4
+2 3 4 5 7
+After sorting:2 3 4 5 7
